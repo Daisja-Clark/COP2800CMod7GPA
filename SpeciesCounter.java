@@ -1,6 +1,6 @@
 // SpeciesCounter.java
-//
-// 
+// Daisja Clark
+// February 28, 2026
 // Encapsulates species data and related operations
 
 public class SpeciesCounter {
@@ -18,7 +18,8 @@ public class SpeciesCounter {
     private static final int SP_ADELIE_INDEX = 2;
 
     // Private fields for encapsulation
-
+    private String[] speciesData;
+    private int[] speciesCount;
 
     // Default constructor
     public SpeciesCounter() {
@@ -28,26 +29,42 @@ public class SpeciesCounter {
 
     // Reads species data from CSV file
     public void readSpeciesData() {
-
+        speciesData = CSVReader.readFile(FILE_NAME, 1);
     }
 
     // Initializes the species count array
     public void initializeSpeciesCount() {
-
+       speciesCount = new int[NUM_SPECIES];
     }
 
     // Checks if the species data is empty
     public boolean isDataEmpty() {
-        return false;
+        if  (speciesData.length == 0){
+            return true;
+        }
+        else{
+          return false;
+        }
     }
 
     // Counts occurrences of each species
     public void countSpecies() {
-
+      for (int i = 0; i < speciesData.length; i++){
+          if(speciesData[i].equals("Chinstrap")){
+             speciesCount[0]++;
+      }
+      else if (speciesData[i].equals ("Gentoo")){
+          speciesCount[1]++;
+      }
+      else if (speciesData[i].equals("Adelie")){
+          speciesCount[2]++;
+      }
     }
-
+}
     // Prints the species count
     public void printSpeciesCount() {
-
+       System.out.println("Chinstrap count = " + speciesCount[SP_CHINSTRAP_INDEX]);
+       System.out.println("Gentoo count = " + speciesCount[SP_GENTOO_INDEX]);
+       System.out.println("Adelie count = " + speciesCount[SP_ADELIE_INDEX]);
     }
 }
